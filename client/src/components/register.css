@@ -1,0 +1,56 @@
+.Register{
+    text-align: center;
+    position: relative;
+}
+.reg-h{
+    position: absolute;
+    top: 50px;
+    left: 40%;
+}
+.register-form-fName{
+    position: absolute;
+    top: 150px;
+    width: 30%;
+    left: 35%;
+}
+.register-form-lName{
+    position: absolute;
+    top: 220px;
+    width: 30%;
+    left: 35%; 
+}
+.register-form-email{
+    position: absolute;
+    top: 290px;
+    width: 30%;
+    left: 35%; 
+}
+.register-form-mobile{
+    position: absolute;
+    top: 360px;
+    width: 30%;
+    left: 35%; 
+}
+.register-form-age{
+    position: absolute;
+    top: 430px;
+    width: 30%;
+    left: 35%; 
+}
+.register-form-pass{
+    position: absolute;
+    top: 500px;
+    width: 30%;
+    left: 35%; 
+}
+.register-btn{
+    position: absolute;
+    top: 600px;
+    width: 9%;
+    left: 45%; 
+}
+.reg-footer{
+    position: absolute;
+    top: 650px;
+    
+}
