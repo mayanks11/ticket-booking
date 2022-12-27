@@ -21,6 +21,16 @@ router.post('/api/bus', async(req, res) => {
     }
 })
 
+router.delete('/api/bus/:id', async (req,res)=>{    
+    try {
+        console.log(req.params.id)
+        const deleteItem = await bus.deleteOne({busId: req.params.id});
+        res.status(200).json('Item deleted');
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 router.get("/api/buses", async(req, res) => {
     try {
         const entries = await bus.find({})

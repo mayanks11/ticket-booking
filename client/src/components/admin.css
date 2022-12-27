@@ -1,0 +1,76 @@
+.admin{
+    text-align: center;
+}
+input{
+    width: 40%;
+}
+.admin-form-from{
+    width: 35%;
+    position: absolute;
+    top: 150px;
+    left: 32%;
+}
+.admin-form-to{
+    width: 35%;
+    position: absolute;
+    top: 220px;
+    left: 32%;
+}
+.admin-form-seats{
+    width: 35%;
+    position: absolute;
+    top: 290px;
+    left: 32%;
+}
+.admin-form-avail-seat{
+    width: 35%;
+    position: absolute;
+    top: 360px;
+    left: 32%;
+}
+.admin-form-departure{
+    width: 35%;
+    position: absolute;
+    top: 430px;
+    left: 32%;
+}
+.admin-form-arrival{
+    width: 35%;
+    position: absolute;
+    top: 500px;
+    left: 32%;
+}
+.admin-form-id{
+    width: 35%;
+    position: absolute;
+    top: 570px;
+    left: 32%;
+}
+.admin-form-contact{
+    width: 35%;
+    position: absolute;
+    top: 640px;
+    left: 32%;
+}
+.admin-btn{
+    position: absolute;
+    top: 740px;
+    left: 47%;
+}
+.admin-del-h1{
+    position: absolute;
+    top: 810px;
+    left: 45%;
+}
+.admin-form-delete{
+    position: absolute;
+    top: 880px;
+    left: 32%;
+    width: 35%;
+}
+.admin-del-btn{
+    position: absolute;
+    top: 980px;
+    left: 47%;
+    margin-bottom: 100px;
+}

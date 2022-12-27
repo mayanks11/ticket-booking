@@ -19,7 +19,7 @@ export default function Login(){
             },
             { withCredentials: true }
           );
-          console.log(res.data)
+          
           if(res.data === "no"){
             toast.error('No email id found', {
                 position: "bottom-right"

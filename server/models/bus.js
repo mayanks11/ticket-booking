@@ -5,7 +5,7 @@ const busSchema = new mongoose.Schema({
     to: String,
     seats: String,
     avaiableSeats: String,
-    busId: String,
+    busId: {type: String, unique: true},
     contact: String,
     departureTime: String,
     arrivalTime: String

@@ -56,25 +56,24 @@ router.post("/api/login", async (req, res) => {
         const reqPassword = req.body.password;
         console.log(reqPassword)
         const item = await user.findOne({email: reqEmail});
+
         if(item){
+            const token = createToken(item._id);
             const save = item.password;
             if(bcrypt.compareSync(reqPassword, save)){
-                
-                
-                res.json(item);
-                // res.status(200).json(item)
+                res.cookie("jwt", token, {
+                    withCredentials: true,
+                    httpOnly: false,
+                    maxAge: expire * 1000
+                });                               
+                res.status(200).json(item)
             }else{
                 res.json('false')
             }
         }else{
             res.json('no');
         }
-        // const token = createToken(item._id);
-        // res.cookie("jwt", token, {
-        //     withCredentials: true,
-        //     httpOnly: false,
-        //     maxAge: expire * 1000
-        // });
+
     } catch (error) {
         const errors = handleErrors(error);
         res.json(errors);
