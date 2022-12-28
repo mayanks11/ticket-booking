@@ -19,7 +19,7 @@ export default function Login(){
             },
             { withCredentials: true }
           );
-          
+          console.log(res.data)
           if(res.data === "no"){
             toast.error('No email id found', {
                 position: "bottom-right"
@@ -29,12 +29,13 @@ export default function Login(){
                 position: "bottom-right"
             });
           }else{
-            navigate('/success');
+            navigate('/success', {state: {user: res.data}});
           }
         } catch (ex) {
           console.log(ex);
         }
       };
+
     return(
         <div className="login">
             <form>

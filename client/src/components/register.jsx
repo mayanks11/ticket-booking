@@ -28,7 +28,7 @@ export default function Register(){
                     generateError(email)
                 }
             }else{
-                navigate('/success');
+                navigate('/success', {state: {user: res.data}});
             }
          } catch (error) {
            console.error(error);

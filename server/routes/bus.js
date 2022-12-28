@@ -21,6 +21,17 @@ router.post('/api/bus', async(req, res) => {
     }
 })
 
+router.post('/api/search', async(req, res) => {
+    try {
+        const reqFrom = req.body.from;
+        const reqTo = req.body.to;
+        const item = await bus.find({from: reqFrom, to: reqTo});
+        res.status(200).json(item);
+    } catch (error) {
+        res.json(error);
+    }
+})
+
 router.delete('/api/bus/:id', async (req,res)=>{    
     try {
         console.log(req.params.id)
