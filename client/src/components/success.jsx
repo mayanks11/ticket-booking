@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './success.css';
+
 export default function Success(){
     const [bus, setBus] = useState([]);
     const[from, setFrom] = useState('');
@@ -10,7 +11,10 @@ export default function Success(){
     const hello = useNavigate();
     const[show, setShow] = useState(false);
     const[hit, setHit] = useState([]);
+    
     console.log(navigate.state)
+    var user = navigate.state;
+    
     useEffect(() => {
         async function getEntry(){
             try {
@@ -32,17 +36,27 @@ export default function Success(){
     const handleSearch = async () => {
         try {
           const res = await axios.post(`http://localhost:2000/api/search`,{from: from, to: to})
-          console.log(res.data);
+        //   console.log(res.data);
           
           if(res.data.length > 0){
             setShow(true);
             setHit(res.data);
+
           }else{
             setShow(false)
           }
         } catch (error) {
           console.log(error)
         }
+      }
+
+      const handleBook = (index) =>{
+        
+
+        console.log(index)
+        
+        alert('booked');
+        hello('/booking', {state: {user: user, index: index, hit: hit}});
       }
 
     return(
@@ -89,16 +103,17 @@ export default function Success(){
             <hr className="success-hr"/>
             
             {(show === true) ?  
-            hit.map((buses => 
+            hit.map(((buses, index) => 
             <>
             <h1>Buses</h1>
                 <div className="col-lg-3 col-md-6">  
           <div className="card">
           <div className="card-body">
+          {console.log(index)}
             <h5 className="card-title">Bus: {buses.busId}</h5>
             <p className="card-text">Seats: {buses.seats}</p>
             <p className="card-text">Available Seats: {buses.avaiableSeats}</p>
-            <button class="book-btn btn btn-primary" >Book</button>
+            <button class="book-btn btn btn-primary" onClick={() => {handleBook(index)}}>Book</button>
             <button class="book-btn btn btn-primary" >Contact</button>
           </div>
         
