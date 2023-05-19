@@ -1,1 +1,1 @@
-ticket booking website using react.js
+ticket booking website using ReactJS
