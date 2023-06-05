@@ -114,7 +114,7 @@ export default function Success(){
             <p className="card-text">Seats: {buses.seats}</p>
             <p className="card-text">Available Seats: {buses.avaiableSeats}</p>
             <button class="book-btn btn btn-primary" onClick={() => {handleBook(index)}}>Book</button>
-            <button class="book-btn btn btn-primary" >Contact</button>
+            <button class="book-btn btn btn-primary" onClick={(e) => {e.preventDefault();alert(buses.contact)}}>Contact</button>
           </div>
         
           </div>
