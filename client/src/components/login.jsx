@@ -52,7 +52,7 @@ export default function Login(){
                 <button onClick={e => {handleClick(e.preventDefault())}} className="login-btn w-10 btn btn-lg btn-primary" type="submit">Sign in</button>
                 <p className="mt-5 mb-3 text-muted fixed-bottom">&copy; Mayank 2022</p>
             </form>
-            <p className="register-here">New to the site, Register <Link to='/register'>Here</Link></p>
+            <p className="register-here">New to the site, register <Link to='/register'>Here</Link></p>
             <ToastContainer/>
         </div>
     )
