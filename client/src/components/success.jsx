@@ -4,25 +4,19 @@ import axios from "axios";
 import './success.css';
 
 export default function Success(){
-    const [bus, setBus] = useState([]);
+    //const [bus, setBus] = useState([]);
     const[from, setFrom] = useState('');
     const[to, setTo] = useState('');
     const navigate = useLocation();
     const hello = useNavigate();
-    const[show, setShow] = useState(false);
+    //const[show, setShow] = useState(false);
     const[hit, setHit] = useState([]);
-    
+    const[bookCreate, setBookCreate] = useState('None');
     console.log(navigate.state)
     var user = navigate.state;
     
     useEffect(() => {
-        async function getEntry(){
-            try {
-                const res = await axios.get("http://localhost:2000/api/buses")
-                setBus(res.data);
-            } catch (error) {console.log(error)}
-        }
-        getEntry()
+        
     },[])
     
     const Search=(e)=>{
@@ -39,11 +33,11 @@ export default function Success(){
         //   console.log(res.data);
           
           if(res.data.length > 0){
-            setShow(true);
+            //setShow(true);
             setHit(res.data);
 
           }else{
-            setShow(false)
+            //setShow(false)
           }
         } catch (error) {
           console.log(error)
@@ -65,69 +59,143 @@ export default function Success(){
             <button className=" logout-btn btn btn-danger" onClick={() => {hello('/')}}>Logout</button>
             <hr className="success-hr"/>
             
-            <form className="form">
-                <h1 className="suc-h h3 mb-3 fw-normal">Enter From and To</h1>
-                <div className="from-selector">
-                <div className="search-btn"><div><h5>From</h5> </div></div>
-                    <select onChange={(e)=>Search(e)} name="state" id="state" class="suc-form form-control bottom ">
-                    <option>*</option>
-                    {
-        
-                        bus.map((buses => 
-                            <option onChange={(e)=>Search(e)}>{buses.from}</option>
-                        ))
-                    }
-                                
-                    </select>
-                </div>
-                
-                <div className="to-selector">
-                <div className="search-btn"><div><h5>To</h5> </div></div>
-                    <select onChange={(e)=>To(e)} name="state" id="state" class="suc-form form-control bottom ">
-                    <option>*</option>
-                    {
-                        
-                        bus.map((buses => 
-                            <option>{buses.to}</option>
-                        ))
-                    }
-                                
-                    </select>
-                </div>
-
-                <button onClick={e => {handleSearch(e.preventDefault())}} className="suc-btn w-10 btn btn-lg btn-primary" type="submit">Search</button>
-                <p className="suc-footer mt-5 mb-3 text-muted fixed-bottom">&copy; Mayank 2022</p>
-                
-            </form>
+            <button onChange={() => setBookCreate('Create')} className="btn btn-primary ride">Create Ride</button>
+            <button onChange={() => setBookCreate('Book')} className="btn btn-primary ride">Book a ride</button>
         
             <hr className="success-hr"/>
             
-            {(show === true) ?  
-            hit.map(((buses, index) => 
-            <>
-            <h1>Buses</h1>
-                <div className="col-lg-3 col-md-6">  
-          <div className="card">
-          <div className="card-body">
-          {console.log(index)}
-            <h5 className="card-title">Bus: {buses.busId}</h5>
-            <p className="card-text">Seats: {buses.seats}</p>
-            <p className="card-text">Available Seats: {buses.avaiableSeats}</p>
-            <button class="book-btn btn btn-primary" onClick={() => {handleBook(index)}}>Book</button>
-            <button class="book-btn btn btn-primary" onClick={(e) => {e.preventDefault();alert(buses.contact)}}>Contact</button>
-          </div>
+            {
+              (bookCreate === 'Create')?
+              <h1>Select an option</h1>:
+              (bookCreate === 'None')?
+              <div class="container">
+      <div class="py-5 text-center">
         
-          </div>
-          </div>
-          </>
-            ))
-                
-                        :
-                        <h5>  Not Found</h5> 
-                }
+        <h2>Create Ride</h2>
+        <p class="lead">Enter your origin, destination of your travel along with the time of travel and set the price</p>
+      </div>
+
+      <div class="row">
+        
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Enter details</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">From</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required/>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">To</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required/>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
             
-                
+
+            <div class="mb-3">
+              <label for="email">Car number and Type</label>
+              <input type="email" class="form-control" id="email"/>
+              <div class="invalid-feedback">
+                Please enter a valid car no
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Date</label>
+              <input type="text" class="form-control" id="address"  required/>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Time</label>
+              <input type="text" class="form-control" id="address2"/>
+            </div>
+
             
+            <hr class="mb-4"/>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Create Ride</button>
+          </form>
+          
+          
         </div>
+      </div>  
+      </div>  
+              :(bookCreate === 'None')?
+              <div class="container">
+      <div class="py-5 text-center">
+        
+        <h2>Create Ride</h2>
+        <p class="lead">Enter your origin, destination of your travel along with the time of travel and set the price</p>
+      </div>
+
+      <div class="row">
+        
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Enter details</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">From</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required/>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">To</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required/>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+            
+
+            <div class="mb-3">
+              <label for="email">Car number and Type</label>
+              <input type="email" class="form-control" id="email"/>
+              <div class="invalid-feedback">
+                Please enter a valid car no
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Date</label>
+              <input type="text" class="form-control" id="address"  required/>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Time</label>
+              <input type="text" class="form-control" id="address2"/>
+            </div>
+
+            
+            <hr class="mb-4"/>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Create Ride</button>
+          </form>
+          
+          
+        </div>
+      </div>  
+      </div>:
+              <p>hello</p>
+            }
+            
+                
+            
+    </div>
     )
 }
